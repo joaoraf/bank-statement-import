@@ -38,6 +38,7 @@ class AccountStatementImport(models.TransientModel):
             payment_ref += " " + transaction.checknum
         if transaction.memo:
             payment_ref += " : " + transaction.memo
+        payment_ref += " Amount:" + str(transaction.amount)
         vals = {
             "date": transaction.date,
             "payment_ref": payment_ref,
