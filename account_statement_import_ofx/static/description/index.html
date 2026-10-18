@@ -392,8 +392,13 @@ different bank accounts in the same OFX file.</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>This module requires the
-<a class="reference external" href="https://pypi.org/project/ofxparse/">ofxparse</a> python lib.</p>
+<p>This module requires version 0.2.2 of the
+<a class="reference external" href="https://pypi.org/project/ofxparse2/">ofxparse2</a> Python distribution.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ofxparse2</span></code> is a maintained fork selected because OFX statements issued by
+Banco do Brasil are not compatible with the original <code class="docutils literal notranslate"><span class="pre">ofxparse</span></code>
+distribution. The fork preserves the <code class="docutils literal notranslate"><span class="pre">ofxparse</span></code> Python import namespace, so
+the addon and its Odoo external dependency check intentionally continue to
+import and declare <code class="docutils literal notranslate"><span class="pre">ofxparse</span></code>.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>

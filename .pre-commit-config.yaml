@@ -58,7 +58,8 @@ repos:
           - --if-source-changed
           - --keep-source-digest
           - --convert-fragments-to-markdown
-      - id: oca-gen-external-dependencies
+      # Disabled in this fork because it would replace the pinned ofxparse2
+      # distribution with the ofxparse import namespace from the manifest.
   - repo: https://github.com/OCA/odoo-pre-commit-hooks
     rev: v0.0.33
     hooks:

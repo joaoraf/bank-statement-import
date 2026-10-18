@@ -1,4 +1,8 @@
-# generated from manifests external_dependencies
+# Maintained manually because the distribution name (ofxparse2) differs from
+# the Python import namespace (ofxparse) declared in the addon manifest.
 cryptography
-ofxparse2
+# Keep this pinned: this maintained fork handles Banco do Brasil OFX files that
+# the original ofxparse distribution cannot parse, while preserving the
+# ``ofxparse`` Python import namespace used by the addon.
+ofxparse2==0.2.2
 plaid-python

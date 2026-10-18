@@ -1,5 +1,7 @@
 import base64
 import datetime
+from decimal import Decimal
+from types import SimpleNamespace
 
 import odoo.tests.common as common
 from odoo.tools import file_open
@@ -81,11 +83,29 @@ class TestOfxFile(common.TransactionCase):
 
             line = self.absl_model.search(
                 [
-                    ("payment_ref", "=", "Agrolait"),
+                    ("payment_ref", "=", "Agrolait Amount:-80"),
                     ("statement_id", "=", bank_st_record.id),
                 ]
             )[0]
             self.assertEqual(line.date, datetime.date(2013, 8, 24))
+
+    def test_payment_ref_has_amount_suffix(self):
+        transaction = SimpleNamespace(
+            payee="PIX - RECEBIDO",
+            checknum=None,
+            memo="Banco do Brasil",
+            amount=Decimal("25.07"),
+            date=datetime.date(2026, 2, 1),
+            id="pix-25-07",
+        )
+
+        values = self.asi_model._prepare_ofx_transaction_line(transaction)
+
+        self.assertEqual(
+            values["payment_ref"],
+            "PIX - RECEBIDO : Banco do Brasil Amount:25.07",
+        )
+        self.assertEqual(values["amount"], 25.07)
 
     def no_test_check_journal_bank_account(self):
         ofx_path = "account_statement_import_ofx/tests/test_ofx_file/test_ofx_iban.ofx"
